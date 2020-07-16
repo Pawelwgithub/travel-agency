@@ -15,7 +15,7 @@ const initialState = {
   filters: {
     searchPhrase: '',
     tags: [],
-    regions: '',
+    region: '',
     duration: {
       from: 1,
       to: 14,

@@ -29,7 +29,16 @@ export const getFilteredTrips = ({trips, filters}) => {
     });
   }
 
+  if(filters.region){
+    console.log('Countries region:', filters.region);
+  }
+  
   // TODO - sort by cost descending (most expensive goes first)
+  output = output.sort(
+    (a, b) =>
+      parseFloat(b.cost.slice(1).split(',').join('')) -
+      parseFloat(a.cost.slice(1).split(',').join(''))
+  );
 
   return output;
 };
