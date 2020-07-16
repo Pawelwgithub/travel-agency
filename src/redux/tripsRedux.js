@@ -2,7 +2,7 @@
 
 export const getAllTrips = ({trips}) => trips;
 
-export const getFilteredTrips = ({trips, filters}) => {
+export const getFilteredTrips = ({trips, filters, countries}) => {
   let output = trips;
 
   // filter by search phrase
@@ -29,8 +29,25 @@ export const getFilteredTrips = ({trips, filters}) => {
     });
   }
 
+  // filter by regions
   if(filters.region){
     console.log('Countries region:', filters.region);
+    const countryArr = [];
+
+    for (let country of Object.keys(countries)){
+      if (countries[country].region == filters.region){
+        countryArr.push(country);
+      }
+    }
+
+    for(let i=0; i < countryArr.length; i++){
+      let countryCode = countryArr[i];
+      for(let i=0; i < trips.length; i++){
+        if (countryCode == trips[i].country.code){
+          console.log('Country code');
+        }
+      }
+    }
   }
   
   // TODO - sort by cost descending (most expensive goes first)
