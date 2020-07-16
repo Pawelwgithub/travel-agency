@@ -31,8 +31,13 @@ class TripListOptions extends React.Component {
     this.props.changeSearchPhrase(phrase);
   }
 
+  handleRegion(regionName){
+    console.log('Selected region:', regionName);
+    this.props.selectRegion(regionName);
+  }
+
   render(){
-    const {tags, filters} = this.props;
+    const {tags, filters, regions} = this.props;
     return (
       <div className={styles.component}>
         <Row around="lg">
@@ -61,15 +66,13 @@ class TripListOptions extends React.Component {
               <details>
                 <summary className={styles.toggle}>Filter by regions</summary>
                 <div className={styles.dropdown}>
-                  {Object.keys(tags).map((tag) => (
+                  {Object.keys(regions).map((regionName) => (
                     <label
-                      key={tag}
+                      key={regionName}
                       className={styles.option}
-                      onClick={(event) =>
-                        this.handleTags(tag, event.currentTarget.checked)
-                      }
+                      onClick={() => this.handleRegion(regionName)}
                     >
-                      {tag}
+                      {regionName}
                     </label>
                   ))}
                 </div>
@@ -99,11 +102,13 @@ class TripListOptions extends React.Component {
 }
 
 TripListOptions.propTypes = {
+  regions: PropTypes.object,
   tags: PropTypes.object,
   filters: PropTypes.object,
   changeSearchPhrase: PropTypes.func,
   changeFromDuration: PropTypes.func,
   changeToDuration: PropTypes.func,
+  selectRegion: PropTypes.func,
   addTag: PropTypes.func,
   removeTag: PropTypes.func,
 };
