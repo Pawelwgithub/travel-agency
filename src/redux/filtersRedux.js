@@ -13,6 +13,7 @@ export const CHANGE_PHRASE = createActionName('CHANGE_PHRASE');
 // TODO - add other action types
 export const CHANGE_FROM_DURATION = createActionName('CHANGE_FROM_DURATION');
 export const CHANGE_TO_DURATION = createActionName('CHANGE_TO_DURATION');
+export const SELECT_REGION = createActionName('SELECT_REGION');
 export const ADD_TAG = createActionName('ADD_TAG');
 export const REMOVE_TAG = createActionName('REMOVE_TAG');
 
@@ -27,6 +28,7 @@ export const changeToDuration = (payload) => ({
   payload,
   type: CHANGE_TO_DURATION,
 });
+export const selectRegion = (payload) => ({ payload, type: SELECT_REGION});
 export const addTag = (payload) => ({ payload, type: ADD_TAG });
 export const removeTag = (payload) => ({ payload, type: REMOVE_TAG });
 
@@ -54,6 +56,11 @@ export default function reducer(statePart = [], action = {}) {
           ...statePart.duration,
           to: action.payload,
         },
+      };
+    case SELECT_REGION:
+      return {
+        ...statePart,
+        region: action.payload,
       };
     case ADD_TAG:
       return {
