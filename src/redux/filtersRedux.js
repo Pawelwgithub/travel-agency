@@ -16,6 +16,8 @@ export const CHANGE_TO_DURATION = createActionName('CHANGE_TO_DURATION');
 export const SELECT_REGION = createActionName('SELECT_REGION');
 export const ADD_TAG = createActionName('ADD_TAG');
 export const REMOVE_TAG = createActionName('REMOVE_TAG');
+//export const ADD_REGION = createActionName('ADD_REGION');
+//export const REMOVE_REGION = createActionName('REMOVE_REGION');
 
 // action creators
 export const changeSearchPhrase = payload => ({ payload, type: CHANGE_PHRASE });
@@ -31,6 +33,8 @@ export const changeToDuration = (payload) => ({
 export const selectRegion = (payload) => ({ payload, type: SELECT_REGION});
 export const addTag = (payload) => ({ payload, type: ADD_TAG });
 export const removeTag = (payload) => ({ payload, type: REMOVE_TAG });
+//export const addRegion = (payload) => ({ payload, type: ADD_REGION });
+//export const removeRegion = (payload) => ({ payload, type: REMOVE_REGION });
 
 // reducer
 export default function reducer(statePart = [], action = {}) {
@@ -72,6 +76,16 @@ export default function reducer(statePart = [], action = {}) {
         ...statePart,
         tags: [...statePart.tags.filter((tag) => tag !== action.payload)],
       };
+    /*case ADD_REGION:
+      return {
+        ...statePart,
+        region: [...statePart.region, action.payload],
+      };
+    case REMOVE_REGION:
+      return {
+        ...statePart,
+        region: [...statePart.region.filter((regionName) => regionName !== action.payload)],
+      };*/
     default:
       return statePart;
   }

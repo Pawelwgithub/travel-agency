@@ -11,6 +11,8 @@ import {
   selectRegion,
   addTag,
   removeTag,
+  //addRegion,
+  //removeRegion,
 } from '../../../redux/filtersRedux';
 
 const mapStateToProps = state => ({
@@ -27,6 +29,8 @@ const mapDispatchToProps = dispatch => ({
   selectRegion: value => dispatch(selectRegion(value)),
   addTag: tag => dispatch(addTag(tag)),
   removeTag: tag => dispatch(removeTag(tag)),
+  //addRegion: regionName => dispatch(addRegion(regionName)),
+  //removeRegion: regionName => dispatch(removeRegion(regionName)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TripListOptions);

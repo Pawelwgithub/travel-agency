@@ -40,14 +40,18 @@ export const getFilteredTrips = ({trips, filters, countries}) => {
       }
     }
 
+    let output =[];
     for(let i=0; i < countryArr.length; i++){
       let countryCode = countryArr[i];
       for(let i=0; i < trips.length; i++){
         if (countryCode == trips[i].country.code){
-          console.log('Country code');
+          console.log('Countries amount');
+          output.push(trips[i]);
         }
       }
     }
+    console.log(output);
+    return output;
   }
   
   // TODO - sort by cost descending (most expensive goes first)
