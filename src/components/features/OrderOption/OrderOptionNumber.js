@@ -16,7 +16,8 @@ const OrderOptionNumber = ({ currentValue, setOptionValue, price }) => (
       value={currentValue}
       min="1"
       max="9"
-      onChange={(event) => setOptionValue(event.target.value)}
+      //onChange={(event) => setOptionValue(event.target.value)}
+      onChange={(event) => setOptionValue(event.currentTarget.value)}
     ></input>
     {price}
   </div>
