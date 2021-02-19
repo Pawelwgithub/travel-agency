@@ -19,10 +19,11 @@ const sendOrder = (options, tripCost, tripName, tripId, tripCountry) => {
     totalCost,
     tripName, 
     tripId, 
-    tripCountry: tripCountry.alpha3Code,
+    tripCountry,
   };
 
   const url = settings.db.url + '/' + settings.db.endpoint.orders;
+
   const fetchOptions = {
     cache: 'no-cache',
     method: 'POST',
@@ -31,6 +32,7 @@ const sendOrder = (options, tripCost, tripName, tripId, tripCountry) => {
     },
     body: JSON.stringify(payload),
   };
+
   fetch(url, fetchOptions)
     .then(function(response){
       return response.json();
@@ -41,18 +43,20 @@ const sendOrder = (options, tripCost, tripName, tripId, tripCountry) => {
 
 //const OrderForm = ({ tripCost, options }) => (
 const OrderForm = ({ tripCost, options, setOrderOption, tripName, tripId, tripCountry }) => (
-  <Row>
-    {pricing.map(option =>
-      <Col md={4} key={option.id}>
-        {/*<OrderOption {...options} />*/}
-        <OrderOption currentValue={options[option.id]} setOrderOption={setOrderOption} {...option} />
+  <form>
+    <Row>
+      {pricing.map(option =>
+        <Col md={4} key={option.id}>
+          {/*<OrderOption {...options} />*/}
+          <OrderOption currentValue={options[option.id]} setOrderOption={setOrderOption} {...option} />
+        </Col>
+      )}
+      <Col xs={12}>
+        <OrderSummary tripCost={tripCost} options={options} />
+        <Button onClick={options.name && options.contact ? () => sendOrder(options, tripCost, tripName, tripId, tripCountry): null}>Order now!</Button>
       </Col>
-    )}
-    <Col xs={12}>
-      <OrderSummary tripCost={tripCost} options={options} />
-      <Button onClick={options.name && options.contact ? () => sendOrder(options, tripCost, tripName, tripId, tripCountry): null}>Order now!</Button>
-    </Col>
-  </Row>
+    </Row>
+  </form>
 );
 
 OrderForm.propTypes = {
