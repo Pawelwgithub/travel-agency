@@ -57,11 +57,13 @@
   {
     "id": "name",
     "name": "Your name",
+    "required": true,
     "type": "text"
   },
   {
     "id": "contact",
     "name": "Contact info (phone, email, etc.)",
+    "required": true,
     "type":"text"
   },
   {
